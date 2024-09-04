@@ -6,27 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PONG</title>
     <link rel="stylesheet" href="css/jump.css">
+    <link rel="stylesheet" href="css/hs.css">
 </head>
 <body>
-    <main>
-        <section id="game">
-            <div id="score">
-                <div>
-                    <p id="score" class="score">score: 0</p>
-                    <!--<p class="anim">0</p>-->
+    <body>
+        <nav><a href="index.html">HOME</a></nav>
+        <main>
+            <section class="blank"></section>
+            <section id="content">
+                <div id="menus">
+                <h2>HIGH SCORES</h2>
+                <!-- This is what your final html will look like
+                    <div id="high-scores">
+                       <div class="row">
+                            <div>aaa</div><div>1000</div>
+                            <div>bbb</div><div>980</div>
+                       </div>
+                    </div>
+                -->
                 </div>
-                <div>
-                    <p id="high-score" class="score">highscore: 0</p>
-                    <!--<p class="anim">0</p>-->
-                </div>
-            </div>
-            <canvas id="jump" width="800" height="800"></canvas>
-        </section>
-    </main>
-   
-    <script src="js/Box.js"></script>
-    <script src="js/keyboard.js"></script>
-    <script src="js/jump.js"></script>
+            </section>
+            <section class="blank"></section>
+        </main>
+        <script>
+            window.addEventListener(`load`, load)
+            async function load(e){
+                var promise = await fetch("http://localhost:80/highscore");
+                var data = await promise.json(data)
+                let sortedData = data.sort((a, b) => (b.score - a.score));
+                console.log(sortedData);
+
+                var menus = document.querySelector(`#menus`);
+                var highScores = document.createElement(`div`);
+                highScores.id = `high-scores`;
+                menus.appendChild(highScores);
+                sortedData.forEach((item) => {
+                    var row = document.createElement(`div`);
+                    row.className = `row`;
+                    highScores.appendChild(row);
+                    var name = document.createElement(`div`);
+                    name.innerHTML = item.name;
+                    row.appendChild(name);
+                    var score = document.createElement(`div`);
+                    score.innerHTML = item.score;
+                    row.appendChild(score);
+                });
+            }
+            
+        
+        </script>
+    </body>
  
     
         
