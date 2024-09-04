@@ -1,7 +1,7 @@
 {
-  "name": "se251_node",
+  "name": "startscreentest",
   "version": "1.0.0",
-  "description": "",
+  "description": "testing for start screen",
   "main": "highscore.js",
   "dependencies": {
     "express": "^4.17.1",
@@ -15,12 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jayAguiar/se251_node.git"
+    "url": "git+https://github.com/DriscollDev/JumpGame.git"
   },
-  "author": "",
+  "author": "wonka",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jayAguiar/se251_node/issues"
+    "url": "https://github.com/DriscollDev/JumpGame.git"
   },
-  "homepage": "https://github.com/jayAguiar/se251_node#readme"
+  "homepage": "https://github.com/DriscollDev/JumpGame.git",
+  "devDependencies": {}
 }

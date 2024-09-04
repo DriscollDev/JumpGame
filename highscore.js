@@ -29,7 +29,7 @@ const readFile = (path)=>{
 }
 
 app.get(`/`, (req, res)=>{
-  const filePath = path.join(__dirname, `public`, `index.html`)
+  const filePath = path.join(__dirname, `public`, `Ss.html`)
   res.sendFile(filePath);
 })
 
