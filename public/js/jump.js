@@ -6,6 +6,10 @@ var o = [];
 
 var timer, currentState;
 var scoreBoard;
+var score = document.querySelector(`p#score.score`);
+var hscore = document.querySelector(`p#high-score.score`);
+
+var localScore = 0
 
 var player = new Box().setProps({x: c.width/2, w:64 , h:64,  force:1, fill:`#ffff00`});
 var ground = new Box().setProps({fill:`#00ff00`, h:64, w:c.width, y:c.height });
@@ -14,6 +18,7 @@ var plat = [
     new Box().setProps({fill:`#883333`, h:64, w:200, y:-c.height, vy:5}),
 ]
 init();
+hs();
 
 //Main Game Loop
 function main()
@@ -35,6 +40,23 @@ function init()
     //timer to make the game run at 60fps
     clearTimeout(timer);
     timer = setInterval(main, 1000/60);
+}
+
+function hs()
+{
+    if(typeof(Storage)!== undefined)
+    {
+        
+        //hscore.innerHTML = `highscore: ${player.score}`
+        var lscore = JSON.parse(localStorage.getItem(`highscore`));
+        player.score = lscore
+        console.log(localStorage)
+        console.log(lscore)
+        
+        //console.log(lscore)
+        hscore.innerHTML = `highscore: ${lscore}`
+        
+    }
 }
 
 states[`death`] = function()
@@ -73,6 +95,12 @@ states[`game`] = function()
     if(player.y > c.height +player.h)
     {
         currentState = `death`
+        
+         if(localScore > JSON.parse(localStorage.getItem(`highscore`)))
+        {
+            localStorage.setItem(`highscore`, JSON.stringify(localScore))
+            hs()
+        }
     }
     plat.forEach((i)=>{
         i.move()
@@ -83,14 +111,19 @@ states[`game`] = function()
         }
         while(i.collidePoint(player.bottom()) && player.vy > 1)
         {
-            console.log(0)
             player.y--;
             player.vy = -30;
             ground.x = 10000;
-            player.score += 2;
-            console.log(player.score)
+            localScore += 2
+            player.score = localScore;
+            console.log(localScore)
+            score.innerHTML = `score: ${player.score}`
+           
+            
         }
     })
+
+    
 
     while(ground.collidePoint(player.bottom()))
     {
@@ -115,6 +148,9 @@ states[`game`] = function()
         i.draw()
     })
 }
+
+
+
 
 function rand(low, high)
 {
