@@ -1,0 +1,32 @@
+@charset "UTF-8";
+html{height:100%;}
+body{
+    min-height:100%; 
+    margin:0;
+    display:flex; 
+    justify-content: center;
+    background-color: rgb(0,0,0);
+}
+h1{
+    border-bottom:1px solid rgb(245, 0, 0);
+    padding-bottom:5px;
+}
+#form 
+{
+	position:absolute;
+	width: 200px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#aaa;
+	border: 1px solid black;
+	padding: 10px;
+}
+div{
+    display:flex;
+    justify-content: space-between;
+    height:50px;
+    position:relative;
+}
+section{
+    height: 500px;
+}
