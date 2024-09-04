@@ -29,10 +29,10 @@ const readFile = (path)=>{
 }
 
 app.get(`/`, (req, res)=>{
-
   const filePath = path.join(__dirname, `public`, `Ss.html`)
   res.sendFile(filePath);
 })
+
 app.get('/highscore', async (req, res) => {
   var data = await readFile(`./data/highscore.json`);
   res.send(JSON.parse(data));
