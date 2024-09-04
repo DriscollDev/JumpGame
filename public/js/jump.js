@@ -48,6 +48,9 @@ function hs()
     {
         
         //hscore.innerHTML = `highscore: ${player.score}`
+        if(localStorage.getItem(`highscore`) === null){
+            localStorage.setItem(`highscore`, JSON.stringify(0))
+        }
         var lscore = JSON.parse(localStorage.getItem(`highscore`));
         player.score = lscore
         console.log(localStorage)
@@ -96,12 +99,13 @@ states[`game`] = function()
     {
         currentState = `death`
         
-         if(localScore > JSON.parse(localStorage.getItem(`highscore`)))
+        if(localScore > JSON.parse(localStorage.getItem(`highscore`)))
         {
             localStorage.setItem(`highscore`, JSON.stringify(localScore))
             hs()
         }
     }
+
     plat.forEach((i)=>{
         i.move()
         if(i.y > c.height + i.h)
