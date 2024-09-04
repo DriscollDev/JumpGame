@@ -29,28 +29,28 @@ const readFile = (path)=>{
 }
 
 app.get(`/`, (req, res)=>{
+
   const filePath = path.join(__dirname, `public`, `Ss.html`)
   res.sendFile(filePath);
 })
-
-app.get('/jeep', async (req, res) => {
-  var data = await readFile(`./data/jeep.json`);
+app.get('/highscore', async (req, res) => {
+  var data = await readFile(`./data/highscore.json`);
   res.send(JSON.parse(data));
   });
 
-app.post('/jeep', async (req, res) => { 
-    var oldData =  await readFile(`./data/jeep.json`)
-    var newData =  await JSON.parse(oldData)
-    newData.push(req.body)
-    const jsonString = JSON.stringify(newData);
-    await fs.writeFile('./data/jeep.json', jsonString, err => {
-      if (err) {
-          console.log('Error writing file', err)
-      } else {
-          console.log('Successfully wrote file')
-      }
-    });
-    res.send(jsonString);
+app.post('/highscore', async (req, res) => { 
+  var oldData =  await readFile(`./data/highscore.json`)
+  var newData =  await JSON.parse(oldData)
+  newData.push(req.body)
+  const jsonString = JSON.stringify(newData);
+  await fs.writeFile('./data/highscore.json', jsonString, err => {
+    if (err) {
+        console.log('Error writing file', err)
+    } else {
+        console.log('Successfully wrote file')
+    }
+  });
+  res.send(jsonString);
 });
 
 //Start up the server on port 3000.
