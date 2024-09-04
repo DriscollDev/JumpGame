@@ -48,6 +48,7 @@ function hs()
     {
         
         //hscore.innerHTML = `highscore: ${player.score}`
+
         if(localStorage.getItem(`highscore`) === null){
             localStorage.setItem(`highscore`, JSON.stringify(0))
         }
@@ -100,6 +101,7 @@ states[`game`] = function()
         currentState = `death`
         
         if(localScore > JSON.parse(localStorage.getItem(`highscore`)))
+
         {
             localStorage.setItem(`highscore`, JSON.stringify(localScore))
             hs()
