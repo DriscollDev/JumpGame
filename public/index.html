@@ -2,34 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PONG</title>
-    <link rel="stylesheet" href="css/jump.css">
+    <link rel="stylesheet" href="css/startscreen.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <title>Start Screen</title>
 </head>
-<body>
-    <main>
-        <section id="game">
-            <div id="score">
-                <div>
-                    <p class="score">score: 0</p>
-                    <!--<p class="anim">0</p>-->
-                </div>
-                <div>
-                    <p class="score">highscore: 0</p>
-                    <!--<p class="anim">0</p>-->
-                </div>
-            </div>
-            <canvas id="jump" width="800" height="800"></canvas>
-        </section>
-    </main>
-
-    <script src="js/Box.js"></script>
-    <script src="js/keyboard.js"></script>
-    <script src="js/jump.js"></script>
-   
+<body class="pixelify-sansSS">
     
-        
- 
+    <h1>Jump Game</h1>
+    <button id="startbutton">Start</button>
+    
+    <button id="HSbutton">High Score</button>
+    <script>
+        document.getElementById('startbutton').addEventListener('click', function() {
+            window.location.href = 'jump.html';
+        });
+
+        document.getElementById('HSbutton').addEventListener('click', function() {
+            window.location.href = 'hs.html'; 
+        });
+    </script>
+
 </body>
 </html>
