@@ -65,6 +65,8 @@ function hs()
 
 states[`death`] = function()
 {
+    window.location = `end.html`
+
     window.location = `hs.html`
    
 }
