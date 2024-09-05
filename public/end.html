@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/end.css">
+    <title>PONG</title>
+</head>
+<body>
+    <section>
+            <div>
+                <h1>Enter Username</h1>
+                <form>
+                    <input type="text" id="username" placeholder="Enter Username">
+                    <button id="submitScore">Submit HighScore</button>
+                </form>
+            </div>
+    </section>
+
+    <script src="js/Box.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/jump.js"></script>
+    <script>
+        const submitScore = document.getElementById('submitScore');
+        const username = document.getElementById('username');
+        const theScore = JSON.parse(localStorage.getItem('currentScore'));
+
+        submitScore.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (username.value === '') {
+                alert('Please enter a username');
+            } else {
+                fetch('/highscore', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: username.value,
+                        score: theScore
+                    })
+                })
+                .then(res => res.json())
+                .catch(err => console.log(err));
+                window.location = 'hs.html';
+            }
+        });
+    </script>
+</body>
+</html>

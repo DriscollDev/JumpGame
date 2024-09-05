@@ -40,6 +40,7 @@ function init()
     //timer to make the game run at 60fps
     clearTimeout(timer);
     timer = setInterval(main, 1000/60);
+    localStorage.setItem(`currentScore`, JSON.stringify(0))
 }
 
 function hs()
@@ -65,8 +66,7 @@ function hs()
 
 states[`death`] = function()
 {
-    window.location = `hs.html`
-   
+    window.location = `end.html`   
 }
 states[`pause`] = function(){
     o.forEach(function (i){
@@ -99,7 +99,7 @@ states[`game`] = function()
     if(player.y > c.height +player.h)
     {
         currentState = `death`
-        
+        localStorage.setItem(`currentScore`, JSON.stringify(localScore))
         if(localScore > JSON.parse(localStorage.getItem(`highscore`)))
 
         {
